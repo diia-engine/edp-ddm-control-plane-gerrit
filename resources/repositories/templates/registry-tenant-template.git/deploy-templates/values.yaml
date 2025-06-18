@@ -122,6 +122,8 @@ global:
     adminRoutes: "0.0.0.0/0"
   excludePortals: ['']
   connectSourceList: []
+  scriptSourceList:
+    - "https://nominatim.openstreetmap.org"
   deploymentMode: development
   region: ua
   bpAdminPortal:

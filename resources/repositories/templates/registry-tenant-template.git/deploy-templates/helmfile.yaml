@@ -12,8 +12,6 @@ missingFileHandler: Warn
 repositories:
 - name: kong
   url: https://charts.konghq.com
-- name: bitnami
-  url: https://charts.bitnami.com/bitnami
 - name: hashicorp
   url: https://helm.releases.hashicorp.com
 releases:
@@ -146,7 +144,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/redis-sentinel.git
     path: components/registry/
   chart: /opt/repositories/redis-sentinel/deploy-templates
-  version: 1.9.8.2
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -161,9 +159,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/backend/applications/bpms.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/bpms/deploy-templates
-  version: 1.9.8.20.22
+  version: 1.9.8-hotfix.12
   values:
   - values.yaml
   - values.gotmpl
@@ -186,14 +184,14 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/devops/operators/jenkins-operator.git
     path: components/registry/
   chart: /opt/repositories/jenkins-operator/deploy-templates
-  version: 1.9.8.15.6
+  version: 1.9.8-hotfix.4
   values:
   - values.yaml
   - values.gotmpl
   - operator:
       clusterRoleName: jenkins-operator-clusterrole-{{ env "edpProject" }}
       image:
-        name: '{{ env "globalEDPProject" }}/jenkins-operator'
+        name: 'epamedp/jenkins-operator'
   - dockerRegistry: nexus-docker-hosted-{{ env "NAMESPACE" }}.{{ env "dnsWildcard" }}
   missingFileHandler: Warn
   needs:
@@ -210,9 +208,9 @@ releases:
     update_scc: false
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/devops-application/dataplatform-jenkins-agent.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/dataplatform-jenkins-agent/deploy-templates
-  version: 1.9.8.9.13
+  version: 1.9.8-hotfix.13
   values:
   - values.yaml
   - values.gotmpl
@@ -237,7 +235,7 @@ releases:
   - operator:
       clusterRoleName: gerrit-operator-role-{{ env "globalEDPProject" }}
       image:
-        name: '{{ env "globalEDPProject" }}/gerrit-operator'
+        name: 'epamedp/gerrit-operator'
   - values.yaml
   - values.gotmpl
   missingFileHandler: Warn
@@ -276,9 +274,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/backend/applications/user-process-management.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/user-process-management/deploy-templates
-  version: 1.9.8.2
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -299,9 +297,9 @@ releases:
     update_scc: false
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/backend/applications/bp-admin-portal.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/bp-admin-portal/deploy-templates
-  version: 1.9.8.3
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -322,9 +320,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/backend/applications/user-task-management.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/user-task-management/deploy-templates
-  version: 1.9.8.3
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -369,9 +367,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/general/kong.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1-9-8-hotfix
   chart: /opt/repositories/kong/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-1.9.8-HOTFIX-SNAPSHOT.4
   values:
   - values.yaml
   - values.gotmpl
@@ -390,9 +388,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/general/kong-admin-tools.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1-9-8-hotfix
   chart: /opt/repositories/kong-admin-tools/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-1.9.8-HOTFIX-SNAPSHOT.3
   values:
   - values.yaml
   - values.gotmpl
@@ -409,9 +407,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/frontend/applications/common-web-app.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/common-web-app/deploy-templates
-  version: 1.9.8.14
+  version: 1.9.8-hotfix.16
   values:
   - values.yaml
   - values.gotmpl
@@ -436,9 +434,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/devops-application/redash-chart.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/redash-chart/deploy-templates
-  version: 1.9.8.5
+  version: 1.9.8-hotfix.3
   values:
   - values.yaml
   - values.gotmpl
@@ -460,9 +458,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/devops-application/registry-postgres.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/registry-postgres/deploy-templates
-  version: 1.9.8.2
+  version: 1.9.8-hotfix.6
   values:
   - values.yaml
   - values.gotmpl
@@ -506,7 +504,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/devops-application/nexus.git
     path: components/registry/
   chart: /opt/repositories/nexus/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.1
   values:
   - operator:
       clusterRoleName: nexus-operator-{{ env "globalEDPProject" }}-clusterrole
@@ -562,9 +560,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/application/user-settings-service-api.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/user-settings-service-api/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -582,9 +580,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/backend/applications/digital-document-service.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/digital-document-service/deploy-templates
-  version: 1.9.8.3
+  version: 1.9.8-hotfix.12
   values:
   - values.yaml
   - values.gotmpl
@@ -620,9 +618,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/application/excerpt-service-api.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/excerpt-service-api/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -641,9 +639,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/application/excerpt-worker.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/excerpt-worker/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -662,9 +660,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/application/excerpt-worker-docx.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/excerpt-worker-docx/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -683,9 +681,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/application/excerpt-worker-csv.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/excerpt-worker-csv/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.1
   values:
   - values.yaml
   - values.gotmpl
@@ -746,7 +744,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/general/registry-configuration.git
     path: components/registry/
   chart: /opt/repositories/registry-configuration/deploy-templates
-  version: 1.9.8.11
+  version: 1.9.8-hotfix.6
   values:
   - registryGroup:
       name: '{{ env "registryGroup" }}'
@@ -797,9 +795,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/backend/applications/ddm-notification-service.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/ddm-notification-service/deploy-templates
-  version: 1.9.8.3
+  version: 1.9.8-hotfix.3
   values:
   - values.yaml
   - values.gotmpl
@@ -820,9 +818,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/application/process-history-service-persistence.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/process-history-service-persistence/deploy-templates
-  version: 1.9.8.2
+  version: 1.9.8-hotfix.2
   values:
   - values.yaml
   - values.gotmpl
@@ -842,7 +840,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/data-architecture/devops-application/pgadmin-chart.git
     path: components/registry/
   chart: /opt/repositories/pgadmin-chart/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.2
   values:
   - values.yaml
   - values.gotmpl
@@ -877,7 +875,7 @@ releases:
     path: components/registry/
     stream: 1-9-8
   chart: /opt/repositories/registry-regulation-management/deploy-templates
-  version: 1.9.8.4
+  version: 1.9.8.6
   values:
   - values.yaml
   - values.gotmpl
@@ -915,9 +913,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/backend/applications/form-schema-provider.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/form-schema-provider/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.2
   values:
   - values.yaml
   - values.gotmpl
@@ -936,9 +934,9 @@ releases:
     update_scc: true
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/low-code-platform/platform/backend/applications/form-submission-validation.git
     path: components/registry/
-    stream: 1-9-8
+    stream: 1.9.8-hotfix
   chart: /opt/repositories/form-submission-validation/deploy-templates
-  version: 1.9.8.1
+  version: 1.9.8-1.9.8-hotfix-SNAPSHOT.3
   values:
   - values.yaml
   - values.gotmpl

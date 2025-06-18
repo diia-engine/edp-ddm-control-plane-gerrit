@@ -9,7 +9,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/catalog-source.git
   values: []
 - name: monitoring
-  version: 1.9.8.5
+  version: 1.9.8-hotfix.3
   labels:
     type: remote
     update_scc: false
@@ -18,7 +18,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/monitoring.git
   values: []
 - name: storage
-  version: 1.9.8.11
+  version: 1.9.8-hotfix.2
   labels:
     type: remote
     update_scc: false
@@ -27,7 +27,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/storage.git
   values: []
 - name: logging
-  version: 1.9.8.4
+  version: 1.9.8-hotfix.2
   labels:
     type: remote
     update_scc: false
@@ -45,7 +45,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/service-mesh.git
   values: []
 - name: backup-management
-  version: 1.9.8.6
+  version: 1.9.8-hotfix.6
   labels:
     type: remote
     update_scc: false
@@ -54,7 +54,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/backup-management.git
   values: []
 - name: user-management
-  version: 1.9.8.8.8
+  version: 1.9.8-hotfix.4
   labels:
     type: remote
     update_scc: false
@@ -63,7 +63,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/user-management.git
   values: []
 - name: control-plane-nexus
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.2
   labels:
     type: remote
     update_scc: false
@@ -90,7 +90,7 @@ releases:
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/cluster-kafka-operator.git
   values: []
 - name: smtp-server
-  version: 1.9.8.1
+  version: 1.9.8-hotfix.1
   labels:
     type: remote
     update_scc: false

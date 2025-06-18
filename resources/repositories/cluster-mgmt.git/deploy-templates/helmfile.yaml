@@ -21,8 +21,8 @@ releases:
     isbranch: false
     path: components/infra/
     repoURL: ssh://jenkins@gerrit.mdtu-ddm-edp-cicd:32114/mdtu-ddm/infrastructure/control-plane-console.git
-    stream: 1-9-8
-  version: 1.9.8.39
+    stream: 1.9.8-hotfix
+  version: 1.9.8-hotfix.9
   values:
   - values.yaml
   - values.gotmpl
@@ -59,11 +59,11 @@ releases:
     update_scc: false
     type: remote
     path: components/control-plane/
-    stream: 1-9-8-docs
+    stream: 1.9.8-docs
   values:
   - values.yaml
   - values.gotmpl
-  version: 1.9.8.256
+  version: 1.9.8.355
   hooks:
   - events:
     - presync

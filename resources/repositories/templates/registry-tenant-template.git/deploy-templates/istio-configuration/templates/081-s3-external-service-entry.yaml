@@ -1,0 +1,26 @@
+{{- if eq (include "externalS3.enabled" .) "true" -}}
+{{- $ca := include "externalS3.caSecretRef" . -}}
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: s3-external
+  namespace: {{ .Values.namespace }}
+spec:
+  hosts:
+    - {{ include "externalS3.host" . }}
+  exportTo:
+    - "."
+  ports:
+  {{- if $ca }}
+    - name: http
+      number: 80
+      protocol: HTTP
+      targetPort: {{ include "externalS3.port" . }}
+  {{- else }}
+    - number: {{ include "externalS3.port" . }}
+      name: https
+      protocol: HTTPS
+  {{- end }}
+  resolution: DNS
+  location: MESH_EXTERNAL
+{{- end }}

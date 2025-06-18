@@ -22,7 +22,7 @@ spec:
       from:
         - podSelector:
             matchLabels:
-              app: pgadmin
+              app: pgadmin-chart
         - podSelector:
             matchLabels:
               postgres-operator.crunchydata.com/cluster: analytical

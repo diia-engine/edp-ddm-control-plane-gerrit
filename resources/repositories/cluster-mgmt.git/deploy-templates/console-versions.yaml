@@ -11,7 +11,7 @@ consoleVersions:
   consoleVersion: 1.9.7-FIX.6
   registryVersion: 1.9.7
   previousVersion: 1.9.6
-- consoleVersion: 1.9.8.39
-  stream: 1-9-8
+- consoleVersion: 1.9.8-hotfix.9
+  stream: 1.9.8-hotfix
   registryVersion: 1.9.8
   previousVersion: 1.9.7

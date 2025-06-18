@@ -87,6 +87,48 @@ class Helmfile {
         }
     }
 
+    void switchSubscriptionsToManual() {
+        try {
+            script.println("Fetching Subscriptions that do not already have installPlanApproval set to Manual...")
+
+            def subscriptionNamespaceMap = script.sh(
+                script: """
+                    oc get subscriptions --all-namespaces -o json | \
+                    jq -r '[.items[] | select(.spec.installPlanApproval != "Manual")] | .[] | "\\(.metadata.namespace) \\(.metadata.name)"'
+                """,
+                returnStdout: true
+            ).trim()
+
+            if (subscriptionNamespaceMap.isEmpty()) {
+                script.println("No Subscriptions found that require switching to Manual.")
+                return
+            }
+
+            def subscriptions = subscriptionNamespaceMap.split("\n")
+            script.println("SubscriptionNamespaceMap: ${subscriptions}")
+
+            subscriptions.each { line ->
+                def parts = line.split(" ")
+                def namespace = parts[0]
+                def subscriptionName = parts[1]
+
+                try {
+                    script.println("Switching Subscription '${subscriptionName}' in namespace '${namespace}' to Manual")
+
+                    def patchCommand = "oc patch subscription ${subscriptionName} -n ${namespace} --type merge --patch '{\"spec\":{\"installPlanApproval\":\"Manual\"}}'"
+                    script.sh(script: "${patchCommand}", returnStdout: true)
+                    script.println("Successfully patched Subscription '${subscriptionName}' in namespace '${namespace}'")
+                } catch (patchError) {
+                    script.println("Failed to patch Subscription '${subscriptionName}' in namespace '${namespace}': ${patchError.message}")
+                }
+            }
+
+            script.println("Finished processing all Subscriptions.")
+        } catch (any) {
+            script.error("An unexpected error occurred: ${any.message}")
+        }
+    }
+
     void run(context) {
         deployHelper = new DeployHelper(script)
         upgradeHelper = new UpgradeHelper(script)
@@ -222,6 +264,7 @@ class Helmfile {
                         }
 
                         deployHelper.createClusterAdmin(helmValuesPath, context)
+                        deployHelper.createControlPlaneS3User(context)
 
                         //temporary solution. Move to pre-upgrade script when implemented
                         try {
@@ -276,6 +319,7 @@ class Helmfile {
                             script.println("WARN: failed to annotate route ${it.key} in namespace ${it.value}")
                         }
                     }
+                    switchSubscriptionsToManual()
                 }
             }
         }

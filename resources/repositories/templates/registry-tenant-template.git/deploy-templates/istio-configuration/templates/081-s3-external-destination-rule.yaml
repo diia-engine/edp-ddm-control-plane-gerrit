@@ -1,0 +1,20 @@
+{{- if eq (include "externalS3.enabled" .) "true" -}}
+{{- $ca := include "externalS3.caSecretRef" . -}}
+{{- if $ca }}
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: s3-external-dr
+  namespace: {{ .Values.namespace }}
+spec:
+  host: {{ include "externalS3.host" . }}
+  trafficPolicy:
+    portLevelSettings:
+      - port:
+          number: 80
+        tls:
+          mode: SIMPLE
+          sni: {{ include "externalS3.host" . }}
+          caCertificates: "/etc/istio/s3-ca/ca.crt"
+{{- end }}
+{{- end }}
